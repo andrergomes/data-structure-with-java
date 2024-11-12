@@ -41,10 +41,50 @@ public class LinkedListTest {
         LinkedList.Node nodeRemoved = linkedList.removeLast();
 
         assertEquals(11, nodeRemoved.getValue());
-        assertEquals(linkedList.getLength(), 1);
+        assertEquals(1, linkedList.getLength());
         assertNotNull(linkedList.getHead());
         assertNotNull(linkedList.getTail());
         assertEquals(4, linkedList.getHead().getValue());
         assertEquals(4, linkedList.getTail().getValue());
+    }
+
+    @Test
+    void testPrependValue() {
+        linkedList.prepend(2);
+
+        assertEquals(2, linkedList.getLength());
+        assertNotNull(linkedList.getHead());
+        assertNotNull(linkedList.getTail());
+        assertEquals(2, linkedList.getHead().getValue());
+        assertEquals(4, linkedList.getTail().getValue());
+    }
+
+    @Test
+    void testRemoveFirstValue() {
+        linkedList.append(1);
+
+        LinkedList.Node removedValue = linkedList.removeFirst();
+
+        assertNotNull(removedValue);
+        assertEquals(4, removedValue.getValue());
+        assertEquals(1, linkedList.getLength());
+        assertNotNull(linkedList.getHead());
+        assertNotNull(linkedList.getTail());
+        assertEquals(1, linkedList.getHead().getValue());
+        assertEquals(1, linkedList.getTail().getValue());
+    }
+
+    @Test
+    void testGetByIndex() {
+        linkedList.append(1); // Index: 1
+
+        linkedList.append(5); // Index: 2
+
+        linkedList.append(3); // Index: 3
+
+        LinkedList.Node foundNode = linkedList.get(2);
+
+        assertNotNull(foundNode);
+        assertEquals(5, foundNode.getValue());
     }
 }
