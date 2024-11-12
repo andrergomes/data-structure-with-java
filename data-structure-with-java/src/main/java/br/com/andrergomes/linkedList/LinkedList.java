@@ -27,6 +27,17 @@ public class LinkedList {
         return foundNode;
     }
 
+    public boolean set(int index, int value) {
+        Node foundNode = get(index);
+
+        if(foundNode != null) {
+            foundNode.value = value;
+            return true;
+        }
+
+        return false;
+    }
+
     public void prepend(int value) {
         Node newNode = new Node(value);
 

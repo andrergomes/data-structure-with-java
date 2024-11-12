@@ -87,4 +87,19 @@ public class LinkedListTest {
         assertNotNull(foundNode);
         assertEquals(5, foundNode.getValue());
     }
+
+    @Test
+    void testSetValueByIndex() {
+        linkedList.append(1); // Index: 1
+
+        linkedList.append(5); // Index: 2
+
+        linkedList.append(3); // Index: 3
+
+        boolean changedValue = linkedList.set(2, 6);
+
+        assertTrue(changedValue);
+        assertNotNull(linkedList.get(2));
+        assertEquals(6, linkedList.get(2).getValue());
+    }
 }
