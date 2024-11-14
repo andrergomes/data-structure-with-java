@@ -102,4 +102,51 @@ public class LinkedListTest {
         assertNotNull(linkedList.get(2));
         assertEquals(6, linkedList.get(2).getValue());
     }
+
+    @Test
+    void testInsertValueByIndex() {
+        linkedList.append(1); // Index: 1
+
+        linkedList.append(5); // Index: 2
+
+        linkedList.append(3); // Index: 3
+
+        boolean changedValue = linkedList.insert(2, 4);
+
+        assertTrue(changedValue);
+        assertNotNull(linkedList.get(2));
+        assertEquals(4, linkedList.get(2).getValue());
+    }
+
+    @Test
+    void testRemoveValueByIndex() {
+        linkedList.append(1); // Index: 1
+
+        linkedList.append(5); // Index: 2
+
+        linkedList.append(3); // Index: 3
+
+        LinkedList.Node removedValue = linkedList.remove(2);
+
+        assertNotNull(removedValue);
+        assertEquals(5, removedValue.getValue());
+        assertEquals(3, linkedList.getLength());
+    }
+
+    @Test
+    void testReverse() {
+        linkedList.append(1); // Index: 1
+
+        linkedList.append(5); // Index: 2
+
+        linkedList.append(3); // Index: 3
+
+        linkedList.reverse();
+
+        assertEquals(4, linkedList.getLength());
+        assertNotNull(linkedList.getHead());
+        assertNotNull(linkedList.getTail());
+        assertEquals(3, linkedList.getHead().getValue());
+        assertEquals(4, linkedList.getTail().getValue());
+    }
 }

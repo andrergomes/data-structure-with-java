@@ -70,16 +70,16 @@ public class LinkedList {
     public Node removeFirst() {
         if(this.length == 0) return null;
 
-        Node removedNode = this.head;
+        Node temp = this.head;
         this.head = this.head.next;
-        removedNode.next = null;
+        temp.next = null;
         this.length -= 1;
 
         if(this.length == 0) {
             this.tail = null;
         }
 
-        return removedNode;
+        return temp;
     }
 
     public Node removeLast() {
@@ -106,6 +106,63 @@ public class LinkedList {
             }
 
             return temp;
+        }
+    }
+
+    public boolean insert(int index, int value) {
+        if(index < 0 || index > this.length) return false;
+
+        if(index == 0) {
+            prepend(value);
+            return true;
+        }
+
+        if(index == this.length) {
+            append(value);
+            return true;
+        }
+
+        Node newNode = new Node(value);
+        Node temp = this.get(index - 1);
+        newNode.next = temp.next;
+        temp.next = newNode;
+
+        this.length += 1;
+
+        return true;
+    }
+
+    public Node remove(int index) {
+        if(index < 0 || index >= this.length) return null;
+
+        if(index == 0) return removeFirst();
+
+        if(index == this.length - 1) return removeLast();
+
+        Node prev = get(index - 1);
+        Node temp = prev.next;
+        prev.next = temp.next;
+        temp.next = null;
+
+        this.length -= 1;
+
+        return temp;
+    }
+
+    public void reverse() {
+
+        Node temp = this.head;
+        this.head = this.tail;
+        this.tail = temp;
+
+        Node before = null;
+        Node after = temp.next;
+
+        for(int i = 0; i < this.length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
         }
     }
 
